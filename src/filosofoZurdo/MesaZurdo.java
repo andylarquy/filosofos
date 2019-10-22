@@ -1,10 +1,10 @@
-package filosofos;
+package filosofoZurdo;
 
-public class Mesa {
+public class MesaZurdo {
 
 	public static void main(String[] args) throws Exception {
 
-		Filosofo[] filosofos = new Filosofo[5];
+		FilosofoZurdo[] filosofos = new FilosofoZurdo[5];
 		Object[] tenedores = new Object[5];
 
 		for (int i = 0; i < tenedores.length; i++) {
@@ -15,7 +15,13 @@ public class Mesa {
 			Object tenedorIzquierdo = tenedores[i];
 			Object tenedorDerecho = tenedores[(i + 1) % tenedores.length];
 
-			filosofos[i] = new Filosofo(tenedorIzquierdo, tenedorDerecho);
+			if (i == filosofos.length - 1) {
+
+				// El último de los filosofos levanta primero el tenedor izquierdo
+				filosofos[i] = new FilosofoZurdo(tenedorIzquierdo, tenedorDerecho);
+			} else {
+				filosofos[i] = new FilosofoZurdo(tenedorDerecho, tenedorIzquierdo);
+			}
 
 			Thread filosofo = new Thread(filosofos[i], "Filosofo " + (i + 1));
 			filosofo.start();

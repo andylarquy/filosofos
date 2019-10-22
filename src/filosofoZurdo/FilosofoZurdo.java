@@ -1,12 +1,12 @@
-package filosofos;
+package filosofoZurdo;
 
-public class Filosofo implements Runnable {
+public class FilosofoZurdo implements Runnable {
 
 	// The forks on either side of this Philosopher
 	private Object tenedorIzquierdo;
 	private Object tenedorDerecho;
 
-	public Filosofo(Object tenedorIzquierdo, Object tenedorDerecho) {
+	public FilosofoZurdo(Object tenedorIzquierdo, Object tenedorDerecho) {
 		this.tenedorIzquierdo = tenedorIzquierdo;
 		this.tenedorDerecho = tenedorDerecho;
 	}
@@ -24,22 +24,26 @@ public class Filosofo implements Runnable {
 				System.out.println(Thread.currentThread().getName() + ": Pensando");
 				this.simularAccion();
 
-				// Espera por el tenedor izquierdo
-				synchronized (tenedorIzquierdo) {
-					System.out.println(Thread.currentThread().getName() + ": Levantó tenedor izquierdo");
+				// Espera por el tenedor derecho
+				synchronized (tenedorDerecho) {
+
+					System.out.println(Thread.currentThread().getName() + ": Levantó tenedor derecho");
 					simularAccion();
 
 					// Espera por el tenedor derecho
-					synchronized (tenedorDerecho) {
+					synchronized (tenedorIzquierdo) {
+
 						// Comiendo
-						System.out.println(Thread.currentThread().getName() + ": Levantó el tenedor derecho y empezó a comer");
+						System.out.println(
+								Thread.currentThread().getName() + ": Levantó el tenedor izquierdo y empezó a comer");
 						simularAccion();
 
-						System.out.println(Thread.currentThread().getName() + ": Dejó el tenedor derecho");
+						System.out.println(Thread.currentThread().getName() + ": Dejó el tenedor izquierdo");
 					}
 
-					// terminando de comer
-					System.out.println(Thread.currentThread().getName() +": Dejó el cuchillo izquierdo y empezó a pensar");
+					// Terminando de comer
+					System.out.println(Thread.currentThread().getName() + ": Dejó el cuchillo derecho y empezó a pensar");
+
 				}
 			}
 		} catch (InterruptedException e) {
