@@ -2,7 +2,6 @@ package filosofosPorUnTurno;
 
 public class FilosofoPorUnTurno implements Runnable {
 
-	// The forks on either side of this Philosopher
 	private Object tenedorIzquierdo;
 	private Object tenedorDerecho;
 	private int identificador;
@@ -39,7 +38,7 @@ public class FilosofoPorUnTurno implements Runnable {
 
 						System.out.println(Thread.currentThread().getName() + ": Levantó tenedor derecho");
 
-						// Espera por el tenedor derecho
+						// Espera por el tenedor izquierdo
 						synchronized (tenedorIzquierdo) {
 
 							// Comiendo

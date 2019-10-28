@@ -2,7 +2,6 @@ package filosofosInicial;
 
 public class FilosofoInicial implements Runnable {
 
-	// The forks on either side of this Philosopher
 	private Object tenedorIzquierdo;
 	private Object tenedorDerecho;
 
@@ -30,7 +29,7 @@ public class FilosofoInicial implements Runnable {
 					System.out.println(Thread.currentThread().getName() + ": Levantó tenedor derecho");
 					simularAccion();
 
-					// Espera por el tenedor derecho
+					// Espera por el tenedor izquierdo
 					synchronized (tenedorIzquierdo) {
 
 						// Comiendo
